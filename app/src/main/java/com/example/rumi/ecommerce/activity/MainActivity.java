@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Product> products = new ArrayList<>();
     private ProgressDialog mProgressDialog;
     private ProductRecyclerViewAdapter productRecyclerViewAdapter;
-    @BindView(R.id.textViewNotingFound)
-    TextView textViewNotingFound;
+//    @BindView(R.id.textViewNotingFound)
+//    TextView textViewNotingFound;
 
     ApiService apiService;
     Call<List<Product>> productsCall;
@@ -84,14 +84,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: " + response.body().get(0).getName());
                 if (response.isSuccessful() && response.code() == 200) {
                     products.addAll(response.body());
-                    //Toast.makeText(getApplicationContext(), String.valueOf(products.size()), Toast.LENGTH_LONG).show();
-                    if (products.size() > 0) {
-                        productsRecyclerView.setVisibility(View.VISIBLE);
-                        textViewNotingFound.setVisibility(View.INVISIBLE);
-                    } else {
-                        textViewNotingFound.setVisibility(View.VISIBLE);
-                        productsRecyclerView.setVisibility(View.INVISIBLE);
-                    }
+//                    if (products.size() > 0) {
+//                        productsRecyclerView.setVisibility(View.VISIBLE);
+//                        textViewNotingFound.setVisibility(View.INVISIBLE);
+//                    } else {
+//                        textViewNotingFound.setVisibility(View.VISIBLE);
+//                        productsRecyclerView.setVisibility(View.INVISIBLE);
+//                    }
 
                     productRecyclerViewAdapter.notifyDataSetChanged();
                     mProgressDialog.dismiss();

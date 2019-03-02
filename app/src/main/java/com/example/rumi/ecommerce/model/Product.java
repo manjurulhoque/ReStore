@@ -7,10 +7,11 @@ import com.google.gson.annotations.SerializedName;
 import org.bson.types.ObjectId;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Product implements Serializable {
 
-//    @SerializedName("_id")
+    //    @SerializedName("_id")
 //    @Expose
     private String _id;
     @SerializedName("name")
@@ -21,16 +22,26 @@ public class Product implements Serializable {
     private String price;
     @SerializedName("available")
     private Boolean available;
+    private List<String> images;
 
     public Product() {
     }
 
-    public Product(String id, String name, String description, String price, Boolean available) {
+    public Product(String id, String name, String description, String price, Boolean available, List<String> images) {
+        this.images = images;
         this._id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.available = available;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public String getId() {

@@ -1,6 +1,7 @@
 package com.example.rumi.ecommerce.network;
 
 import com.example.rumi.ecommerce.BuildConfig;
+import com.example.rumi.ecommerce.constants.Url;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import okhttp3.OkHttpClient;
@@ -11,7 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 public class RetrofitBuilder {
 
     //    private static final String BASE_URL = "http://192.168.0.10/laravel-android-api/public/api/";
-    private static final String BASE_URL = "http://192.168.0.107:4000/api/"; // wireless lan adapter wifi
+    private static final String BASE_URL = Url.BASE_URL + "/api/"; // wireless lan adapter wifi
 
     private static OkHttpClient client = buildClient();
     private static Retrofit retrofit = buildRetrofit(client);
