@@ -8,4 +8,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--<style name="AndroidImageSlider_Oval_Black">-->
+        <!--<item name="android:layout_width">wrap_content</item>-->
+        <!--<item name="android:layout_height">wrap_content</item>-->
+        <!--<item name="android:gravity">right</item>-->
+        <!--<item name="shape">rect</item>-->
+        <!--<item name="padding_top">4dp</item>-->
+        <!--<item name="padding_bottom">4dp</item>-->
+        <!--<item name="tabIndicatorColor">#000000</item>-->
+        <!--<item name="selected_color">#000000</item>-->
+        <!--<item name="unselected_color">#000000</item>-->
+        <!--<item name="selected_width">8dp</item>-->
+        <!--<item name="selected_height">8dp</item>-->
+        <!--<item name="unselected_width">6dp</item>-->
+        <!--<item name="unselected_height">6dp</item>-->
+    <!--</style>-->
+
 </resources>
