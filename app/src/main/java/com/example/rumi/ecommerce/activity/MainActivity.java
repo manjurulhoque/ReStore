@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.rumi.ecommerce.R;
 import com.example.rumi.ecommerce.adapter.ProductRecyclerViewAdapter;
 import com.example.rumi.ecommerce.interfaces.OnItemClickListener;
+import com.example.rumi.ecommerce.model.Category;
 import com.example.rumi.ecommerce.model.Product;
 import com.example.rumi.ecommerce.network.ApiService;
 import com.example.rumi.ecommerce.network.RetrofitBuilder;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Unbinder unbinder;
     private List<Product> products = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
     private ProgressDialog mProgressDialog;
     private ProductRecyclerViewAdapter productRecyclerViewAdapter;
 //    @BindView(R.id.textViewNotingFound)
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     ApiService apiService;
     Call<List<Product>> productsCall;
+    Call<List<Category>> categoriesCall;
     RecyclerView productsRecyclerView;
 
     @Override
@@ -100,6 +103,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
                 mProgressDialog.dismiss();
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        categoriesCall = apiService.limitedCategories("4");
+        categoriesCall.enqueue(new Callback<List<Category>>() {
+            @Override
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+                Log.d(TAG, "onResponse: " + response.body());
+                if (response.isSuccessful() && response.code() == 200) {
+                    categories.addAll(response.body());
+                    Toast.makeText(getApplicationContext(), String.valueOf(categories.size()), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Category>> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }

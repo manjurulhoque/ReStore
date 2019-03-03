@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.mongodb:mongodb-driver-sync:3.10.1'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.ss.bannerslider:bannerslider:2.0.0'
 }
