@@ -30,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
 
@@ -39,8 +39,24 @@ public class MainActivity extends AppCompatActivity {
     private List<Category> categories = new ArrayList<>();
     private ProgressDialog mProgressDialog;
     private ProductRecyclerViewAdapter productRecyclerViewAdapter;
-//    @BindView(R.id.textViewNotingFound)
+    //    @BindView(R.id.textViewNotingFound)
 //    TextView textViewNotingFound;
+    @BindView(R.id.textViewCategoryOne)
+    TextView textViewCategoryOne;
+    @BindView(R.id.textViewCategoryTwo)
+    TextView textViewCategoryTwo;
+    @BindView(R.id.textViewCategoryThree)
+    TextView textViewCategoryThree;
+    @BindView(R.id.textViewCategoryFour)
+    TextView textViewCategoryFour;
+    @BindView(R.id.textViewCategoryOneHidden)
+    TextView textViewCategoryOneHidden;
+    @BindView(R.id.textViewCategoryTwoHidden)
+    TextView textViewCategoryTwoHidden;
+    @BindView(R.id.textViewCategoryThreeHidden)
+    TextView textViewCategoryThreeHidden;
+    @BindView(R.id.textViewCategoryFourHidden)
+    TextView textViewCategoryFourHidden;
 
     ApiService apiService;
     Call<List<Product>> productsCall;
@@ -72,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         productsRecyclerView.setAdapter(productRecyclerViewAdapter);
+
+        textViewCategoryOne.setOnClickListener(this);
+        textViewCategoryTwo.setOnClickListener(this);
+        textViewCategoryThree.setOnClickListener(this);
+        textViewCategoryFour.setOnClickListener(this);
     }
 
     // load all products which is available
@@ -87,14 +108,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: " + response.body().get(0).getName());
                 if (response.isSuccessful() && response.code() == 200) {
                     products.addAll(response.body());
-//                    if (products.size() > 0) {
-//                        productsRecyclerView.setVisibility(View.VISIBLE);
-//                        textViewNotingFound.setVisibility(View.INVISIBLE);
-//                    } else {
-//                        textViewNotingFound.setVisibility(View.VISIBLE);
-//                        productsRecyclerView.setVisibility(View.INVISIBLE);
-//                    }
-
                     productRecyclerViewAdapter.notifyDataSetChanged();
                     mProgressDialog.dismiss();
                 }
@@ -115,7 +128,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: " + response.body());
                 if (response.isSuccessful() && response.code() == 200) {
                     categories.addAll(response.body());
-                    Toast.makeText(getApplicationContext(), String.valueOf(categories.size()), Toast.LENGTH_SHORT).show();
+                    textViewCategoryOne.setText(categories.get(0).getName());
+                    textViewCategoryOneHidden.setText(categories.get(0).getId());
+                    textViewCategoryTwo.setText(categories.get(1).getName());
+                    textViewCategoryTwoHidden.setText(categories.get(1).getId());
+                    textViewCategoryThree.setText(categories.get(2).getName());
+                    textViewCategoryThreeHidden.setText(categories.get(2).getId());
+                    textViewCategoryFourHidden.setText(categories.get(3).getId());
+                    textViewCategoryFour.setText(categories.get(3).getName());
                 }
             }
 
@@ -131,5 +151,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind(); // unbind when activity destroy
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), ProductsByCategoryActivity.class);
+
+        switch (view.getId()) {
+            case R.id.textViewCategoryOne:
+                intent.putExtra("category", textViewCategoryOne.getText());
+                intent.putExtra("category_id", textViewCategoryOneHidden.getText());
+                startActivity(intent);
+                break;
+            case R.id.textViewCategoryTwo:
+                intent.putExtra("category", textViewCategoryTwo.getText());
+                intent.putExtra("category_id", textViewCategoryTwoHidden.getText());
+                startActivity(intent);
+                break;
+            case R.id.textViewCategoryThree:
+                intent.putExtra("category", textViewCategoryThree.getText());
+                intent.putExtra("category_id", textViewCategoryThreeHidden.getText());
+                startActivity(intent);
+                break;
+            case R.id.textViewCategoryFour:
+                intent.putExtra("category", textViewCategoryOne.getText());
+                intent.putExtra("category_id", textViewCategoryFourHidden.getText());
+                startActivity(intent);
+                break;
+        }
     }
 }
