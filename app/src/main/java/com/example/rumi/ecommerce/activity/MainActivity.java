@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView textViewCategoryThreeHidden;
     @BindView(R.id.textViewCategoryFourHidden)
     TextView textViewCategoryFourHidden;
+    @BindView(R.id.textViewShowAllCategory)
+    TextView textViewShowAllCategory;
 
     ApiService apiService;
     Call<List<Product>> productsCall;
@@ -93,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewCategoryTwo.setOnClickListener(this);
         textViewCategoryThree.setOnClickListener(this);
         textViewCategoryFour.setOnClickListener(this);
+
+        textViewShowAllCategory.setOnClickListener(this);
     }
 
     // load all products which is available
@@ -178,6 +182,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("category", textViewCategoryOne.getText());
                 intent.putExtra("category_id", textViewCategoryFourHidden.getText());
                 startActivity(intent);
+                break;
+            case R.id.textViewShowAllCategory:
+                startActivity(new Intent(getApplicationContext(), CategoryActivity.class));
                 break;
         }
     }

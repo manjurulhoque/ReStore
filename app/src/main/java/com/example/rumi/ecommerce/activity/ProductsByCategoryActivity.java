@@ -83,7 +83,7 @@ public class ProductsByCategoryActivity extends AppCompatActivity {
         mProgressDialog.setCancelable(false);
         mProgressDialog.show();
 
-        productsCall = apiService.allProducts();
+        productsCall = apiService.productsByCategory(category_id);
         productsCall.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
@@ -108,6 +108,6 @@ public class ProductsByCategoryActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbinder.unbind(); // unbind when activity destroy
+//        unbinder.unbind(); // unbind when activity destroy
     }
 }

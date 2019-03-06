@@ -18,6 +18,9 @@ public interface ApiService {
     @GET("products")
     public Call<List<Product>> allProducts();
 
+    @GET("categories")
+    public Call<List<Category>> allCategories();
+
     @GET("categories/limits/{limit}")
     public Call<List<Category>> limitedCategories(@Path("limit") String limit);
 
