@@ -9,11 +9,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rumi.ecommerce.R;
 import com.example.rumi.ecommerce.adapter.ProductRecyclerViewAdapter;
+import com.example.rumi.ecommerce.dbhelper.CartDbHelper;
 import com.example.rumi.ecommerce.interfaces.OnItemClickListener;
 import com.example.rumi.ecommerce.model.Category;
 import com.example.rumi.ecommerce.model.Product;
@@ -59,11 +61,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView textViewCategoryFourHidden;
     @BindView(R.id.textViewShowAllCategory)
     TextView textViewShowAllCategory;
+    @BindView(R.id.textViewTotalCart)
+    TextView textViewTotalCart;
+    @BindView(R.id.imageViewCart)
+    ImageView imageViewCart;
 
     ApiService apiService;
     Call<List<Product>> productsCall;
     Call<List<Category>> categoriesCall;
     RecyclerView productsRecyclerView;
+    CartDbHelper cartDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +78,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        cartDbHelper = new CartDbHelper(this);
+
         mProgressDialog = new ProgressDialog(this);
+        textViewTotalCart.setText(String.valueOf(cartDbHelper.getCartCount()));
         // initialize our builder
         apiService = RetrofitBuilder.createService(ApiService.class);
         loadProducts();
@@ -97,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewCategoryFour.setOnClickListener(this);
 
         textViewShowAllCategory.setOnClickListener(this);
+        imageViewCart.setOnClickListener(this);
     }
 
     // load all products which is available
@@ -163,6 +174,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(getApplicationContext(), ProductsByCategoryActivity.class);
 
         switch (view.getId()) {
+            case R.id.imageViewCart:
+                startActivity(new Intent(getApplicationContext(), CartActivity.class));
+                break;
             case R.id.textViewCategoryOne:
                 intent.putExtra("category", textViewCategoryOne.getText());
                 intent.putExtra("category_id", textViewCategoryOneHidden.getText());

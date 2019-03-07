@@ -80,30 +80,6 @@
                         android:gravity="center"
                         android:text="Free Shipping"
                         android:textColor="#000" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/est"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Est. delivery"
-                            android:textColor="#000"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:id="@+id/date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:text="Feb 17-20"
-                            android:textSize="13sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <View
@@ -169,7 +145,6 @@
     </ScrollView>
 
     <Button
-
         android:id="@+id/buttonAddToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -19,21 +19,28 @@
         android:textColor="#000"
         android:textSize="13.3sp" />
 
-    <LinearLayout
-        android:id="@+id/linear"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/textViewTotalCart"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:text=""
+            android:layout_marginRight="20dp"
+            android:textColor="#000" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:id="@+id/imageViewCart"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:src="@drawable/cart" />
-    </LinearLayout>
+
+    </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>
